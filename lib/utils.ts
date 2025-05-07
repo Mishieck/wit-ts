@@ -8,6 +8,20 @@ import type { Flags } from "./wit.ts";
 export const NONE: None = null;
 
 /**
+ * Creates an option with the value set to the given value.
+ *
+ * TODO: Add examples.
+ */
+export const createSome = <Value>(value: Value): Option<Value> => ({ value });
+
+/**
+ * Creates an option with the value set to `NONE`.
+ *
+ * TODO: Add examples.
+ */
+export const createNone = <Value>(): Option<Value> => ({ value: NONE });
+
+/**
  * Checks if an option is does not have a value.
  *
  * TODO: Add examples.
