@@ -28,7 +28,7 @@ export const createNone = <Value>(): Option<Value> => ({ value: NONE });
  */
 export const isNone = <Opt extends Option<unknown>>(
   option: Opt,
-) => option.value === NONE;
+): boolean => option.value === NONE;
 
 /**
  * Checks if an option is does has a value.
@@ -73,7 +73,7 @@ export const createVariant = <Var extends Variant<Record<string, unknown>>>(
  */
 export const createOption = <Opt extends Option<unknown>>(
   value?: Opt["value"],
-) => ({ value: value ?? NONE }) as Opt;
+): Opt => ({ value: value ?? NONE }) as Opt;
 
 /**
  * Creates a result using the WIT `Result` type.
@@ -91,7 +91,7 @@ export const createResult = <
 >(
   field: Field,
   value: Res[Field],
-) => createVariant<Res>({ value: NONE, error: NONE } as Res, field, value);
+): Res => createVariant<Res>({ value: NONE, error: NONE } as Res, field, value);
 
 /**
  * Creates an enum using the WIT `Enum` type.
@@ -101,7 +101,7 @@ export const createResult = <
  *
  * TODO: Add examples.
  */
-export const createEnum = <En extends Enum<string>>(template: En) => {
+export const createEnum = <En extends Enum<string>>(template: En): En => {
   const en = { ...template };
   let value = 0;
   for (const field in en) en[field] = value++ as En[typeof field];
@@ -119,4 +119,4 @@ export const createEnum = <En extends Enum<string>>(template: En) => {
 export const createFlags = <F extends Flags<string>>(
   template: F,
   values: Partial<F>,
-) => Object.assign({ ...template }, values) as F;
+): F => Object.assign({ ...template }, values) as F;

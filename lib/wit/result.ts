@@ -1,4 +1,4 @@
-import { None } from "./none.ts";
+import type { None } from "./none.ts";
 import type { Variant } from "./variant.ts";
 
 /**
