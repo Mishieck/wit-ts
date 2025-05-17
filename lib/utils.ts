@@ -12,14 +12,20 @@ export const NONE: None = null;
  *
  * TODO: Add examples.
  */
-export const createSome = <Value>(value: Value): Option<Value> => ({ value });
+export const createSome = <Value>(value: Value): Option<Value> => ({
+  some: value,
+  none: null,
+});
 
 /**
  * Creates an option with the value set to `NONE`.
  *
  * TODO: Add examples.
  */
-export const createNone = <Value>(): Option<Value> => ({ value: NONE });
+export const createNone = <Value>(): Option<Value> => ({
+  some: NONE,
+  none: null,
+});
 
 /**
  * Checks if an option is does not have a value.
@@ -28,7 +34,7 @@ export const createNone = <Value>(): Option<Value> => ({ value: NONE });
  */
 export const isNone = <Opt extends Option<unknown>>(
   option: Opt,
-): boolean => option.value === NONE;
+): boolean => option.some === NONE;
 
 /**
  * Checks if an option is does has a value.
@@ -37,7 +43,7 @@ export const isNone = <Opt extends Option<unknown>>(
  */
 export const isSome = <Opt extends Option<unknown>>(
   option: Opt,
-): option is Required<Opt> => option.value !== NONE;
+): option is Required<Opt> => option.some !== NONE;
 
 /**
  * Checks if a variant's value is set.
@@ -72,8 +78,8 @@ export const createVariant = <Var extends Variant<Record<string, unknown>>>(
  * TODO: Add examples.
  */
 export const createOption = <Opt extends Option<unknown>>(
-  value?: Opt["value"],
-): Opt => ({ value: value ?? NONE }) as Opt;
+  value?: Opt["some"],
+): Opt => ({ some: value ?? NONE, none: null }) as Opt;
 
 /**
  * Creates a result using the WIT `Result` type.

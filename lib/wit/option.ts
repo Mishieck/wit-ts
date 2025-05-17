@@ -19,4 +19,4 @@ import type { Variant } from "./variant.ts";
  * type for every value type, and to enable it to be mapped idiomatically into
  * languages with option types.
  */
-export type Option<Value> = Variant<{ value: Value }>;
+export type Option<Value> = Variant<{ some: Value; none: null }>;
